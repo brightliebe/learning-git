@@ -272,3 +272,11 @@ Push分支feature-a
 9.合并分支， git merge
 
 # git merge feature-a
+
+
+10.冲突处理
+当GibHub上同样的文件被修改，本地没有pull到最新版本，
+自己在本地修改了同样的文件，这样当你push时会出现confict
+解决办法：
+必须pull最新版本，然后fix完conflict，才能push
+
