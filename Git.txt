@@ -288,6 +288,36 @@ Push分支feature-a
 
 
 11.重新建立基准版本 rebase
+当分支版本出现改变，main分支也发生新的改变时
 
 # git pull -r origin main
+会出现以下情况
+
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+Unpacking objects: 100% (3/3), 730 bytes | 182.00 KiB/s, done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+From github.com:brightliebe/learning-git
+ * branch            main       -> FETCH_HEAD
+   b8cd8c9..7130fee  main       -> origin/main
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Auto-merging Git.txt
+CONFLICT (content): Merge conflict in Git.txt
+error: could not apply 53fc53b... add some html
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 53fc53b... add some html
+
+然后不断地解决冲突，解决完所有conflict后
+[
+不断循环，保存消息
+# git add .
+# git rebase --continue
+]
+
+# git push -f
 
