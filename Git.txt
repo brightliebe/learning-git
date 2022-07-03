@@ -244,3 +244,13 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 
 有*号标识的就是当前分支
 #git branch
+
+
+切换到feature-a分支，并在期间增加或改变文件
+# git checkout -
+
+# git add .
+# git commit -m "Git-GitHub-3.jpg,utils.js with to do"
+
+Push分支feature-a
+# git push -u origin feature-a
