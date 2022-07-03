@@ -280,3 +280,14 @@ Push分支feature-a
 解决办法：
 必须pull最新版本，然后fix完conflict，才能push
 
+# git add .
+# git status
+# git commit -m "resolved conflict"
+# git push
+成功push，解决完冲突
+
+
+11.重新建立基准版本 rebase
+
+# git pull -r origin main
+
