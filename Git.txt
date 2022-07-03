@@ -1,0 +1,175 @@
+0.ctrl + l,清除屏幕
+
+1.检查是否安装Git
+# git --version
+# git --help
+
+2.Git配置
+# git config --global user.name "bright"
+# git config --global user.email "liebebrigh.nr@gmail.com"
+# git config --global color.ui auto
+
+# git config
+
+# git config -l
+查看config的全部配置
+
+git全局配置修改，进入全局配置文件
+# git config -e --global 
+点击字母i,进入编辑状态，可以修改里面的内容
+
+3.Git初始化
+# git init .
+# ls -a
+
+如果删除，那么就没有git 仓库了
+# rm -rf .git
+这样使用git add就会报错
+# git add
+fatal: not a git repository (or any of the parent directories): .git
+
+So, I'll use git init command
+# git init .
+# ls -a
+
+# git add
+Nothing specified, nothing added.
+
+
+4.Git将本地文件加入缓存区
+# touch index.html
+# touch index.js
+# touch main.css
+# ls 
+# git status
+# git add index.html
+# git status
+# git rm --cached index.html
+# git status
+
+把当前目录的全部文件加入了本地库缓存中
+# git add .
+
+# git status
+
+# git rm -r --cached .
+
+# git status
+
+# git add .
+
+# git status
+
+# git add -A
+
+# git status
+
+5. Git Commit 提交到本地代码仓库
+
+# git commit -m "bootstrap project"
+
+# git status
+On branch master
+
+查看一下git 日志历史
+# git log
+
+# git show 26cf830176244a872b95a6e59a8eea449cd90dd4
+
+查看版本变化
+# git diff
+
+重新加入本地缓存库
+# git add .
+
+再次提交到本地代码仓库
+# git commit -m "added Git.txt"
+
+查看一下git 版本变化日志
+# git log
+
+# git diff
+
+# git status
+
+6.创建远程代码仓库，我选择Github
+
+push本地仓库到远程GitHub仓库
+# git remote add origin git@github.com:brightliebe/learning-git.git
+
+# git branch
+
+将分支master装换到main
+# git branch -M main
+
+# git push -u origin main
+
+显示没有权限
+The authenticity of host 'github.com (192.30.255.112)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+Host key verification failed.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+远程Github找到ssh key设置：
+
+先生成本地ssh key
+# ssh-keygen -t ed25519 -C "liebebright.nr@gmail.com"
+一路回车键盘，最后生成
+
+# eval "$(ssh-agent -s)"
+
+# vi ~/.ssh/config
+
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+  
+  
+# ssh-add -K ~/.ssh/id_ed25519
+
+再将ssh key加入到github账户
+# cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB1H33rLq5PGTUXXIu0FGGTW0gXMWZUzd4DGY65mD+yk liebebright.nr@gmail.com
+
+# pbcopy < ~/.ssh/id_ed25519.pub
+
+回到GitHub账户setting中找到ssh key设置的地方，新增Key
+
+# git push -u origin main
+出现错误
+The authenticity of host 'github.com (192.30.255.112)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+解决办法：
+Just add Github fingerprint to known hosts this way:
+# ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+再执行
+# git push -u origin main
+ERROR: Repository not found.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+原因：原来创建remote Repository时写错了路径名字
+解决办法：
+1、先删除远程 Git 仓库
+# git remote rm origin
+2、再添加远程 Git 仓库
+# git remote add origin git@github.com:FBing/java-code-generator
+如果执行 git remote rm origin 报错的话，我们可以手动修改gitconfig文件的内容
+# vi .git/config
+
+
+再重新创建origin
+# git remote add origin git@github.com:brightliebe/learning-git.git
+
+再push一次
+# git push -u origin main
