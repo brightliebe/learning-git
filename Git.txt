@@ -221,6 +221,7 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 
 
 8.关于GitHub的repo的branch  git branch
+
 显示本地仓库的branch
 # git branch
 
@@ -232,6 +233,7 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 
 
 在本地建立一个名字为feature-a的分支
+
 # git branch feature-a
 
 # git branch -a
@@ -253,6 +255,7 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 # git commit -m "Git-GitHub-3.jpg,utils.js with to do"
 
 Push分支feature-a
+
 # git push -u origin feature-a
 
 
@@ -320,4 +323,3 @@ Could not apply 53fc53b... add some html
 ]
 
 # git push -f
-
