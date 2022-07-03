@@ -173,3 +173,31 @@ and the repository exists.
 
 再push一次
 # git push -u origin main
+
+fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
+
+解决办法：
+查看一下remote
+# git remote -v
+发现是空的，则加入remote
+# git remote add origin git@github.com:brightliebe/learning-git.git
+# git remote -v
+origin	git@github.com:brightliebe/learning-git.git (fetch)
+origin	git@github.com:brightliebe/learning-git.git (push)
+
+再次push一次
+# git push -u origin main
+出现错误：
+To github.com:brightliebe/learning-git.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:brightliebe/learning-git.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+解决办法：
+You should use git pull, that´s command do a git fetch and next do the git merge.
+最坏的情况使用一下命令
+# git push origin main --force
