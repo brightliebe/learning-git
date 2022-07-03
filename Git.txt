@@ -36,7 +36,7 @@ So, I'll use git init command
 Nothing specified, nothing added.
 
 
-4.Git将本地文件加入缓存区
+4.Git将本地文件加入缓存区  git add
 # touch index.html
 # touch index.js
 # touch main.css
@@ -64,7 +64,7 @@ Nothing specified, nothing added.
 
 # git status
 
-5. Git Commit 提交到本地代码仓库
+5. Git Commit 提交到本地代码仓库  git commit
 
 # git commit -m "bootstrap project"
 
@@ -92,7 +92,7 @@ On branch master
 
 # git status
 
-6.创建远程代码仓库，我选择Github
+6.创建远程代码仓库，我选择Github   git push
 
 push本地仓库到远程GitHub仓库
 # git remote add origin git@github.com:brightliebe/learning-git.git
@@ -201,3 +201,74 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 You should use git pull, that´s command do a git fetch and next do the git merge.
 最坏的情况使用一下命令
 # git push origin main --force
+
+
+7. 从远程GitHub库下载最新的更新 git pull
+
+# git log
+发现本地仓库没有那个新的commit
+
+# ls
+文件也缺少一些
+
+# git pull
+
+# ls
+发现新增文件变化
+
+# git log
+发现本地仓库多了新的commit
+
+
+8.关于GitHub的repo的branch  git branch
+显示本地仓库的branch
+# git branch
+
+显示远程仓库的branch
+# git branch -r
+
+显示本地以及远程的branch
+# git branch -a
+
+
+在本地建立一个名字为feature-a的分支
+# git branch feature-a
+
+# git branch -a
+
+切换分支
+# git checkout feature-a
+
+切换到前一个分支
+#git checkout -
+
+有*号标识的就是当前分支
+#git branch
+
+
+切换到feature-a分支，并在期间增加或改变文件
+# git checkout -
+
+# git add .
+# git commit -m "Git-GitHub-3.jpg,utils.js with to do"
+
+Push分支feature-a
+# git push -u origin feature-a
+
+
+直接切换到某分支
+# git checkout main
+
+
+直接创建并切换到新的分支
+# git checkout -b to-delete
+
+# git checkout main
+
+删除某分支
+# git branch -d to-delete
+
+
+9.合并分支， git merge
+
+# git merge feature-a
