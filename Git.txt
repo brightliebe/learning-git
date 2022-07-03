@@ -220,7 +220,8 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 发现本地仓库多了新的commit
 
 
-8.关于GitHub的repo的branch
+8.关于GitHub的repo的branch  git branch
+
 显示本地仓库的branch
 # git branch
 
@@ -231,7 +232,8 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 # git branch -a
 
 
-本地建立一个名字为feature-a的分支
+在本地建立一个名字为feature-a的分支
+
 # git branch feature-a
 
 # git branch -a
@@ -253,4 +255,71 @@ You should use git pull, that´s command do a git fetch and next do the git merg
 # git commit -m "Git-GitHub-3.jpg,utils.js with to do"
 
 Push分支feature-a
+
 # git push -u origin feature-a
+
+
+直接切换到某分支
+# git checkout main
+
+
+直接创建并切换到新的分支
+# git checkout -b to-delete
+
+# git checkout main
+
+删除某分支
+# git branch -d to-delete
+
+
+9.合并分支， git merge
+
+# git merge feature-a
+
+
+10.冲突处理
+当GibHub上同样的文件被修改，本地没有pull到最新版本，
+自己在本地修改了同样的文件，这样当你push时会出现confict
+解决办法：
+必须pull最新版本，然后fix完conflict，才能push
+
+# git add .
+# git status
+# git commit -m "resolved conflict"
+# git push
+成功push，解决完冲突
+
+
+11.重新建立基准版本 rebase
+当分支版本出现改变，main分支也发生新的改变时
+
+# git pull -r origin main
+会出现以下情况
+
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+Unpacking objects: 100% (3/3), 730 bytes | 182.00 KiB/s, done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+From github.com:brightliebe/learning-git
+ * branch            main       -> FETCH_HEAD
+   b8cd8c9..7130fee  main       -> origin/main
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Auto-merging Git.txt
+CONFLICT (content): Merge conflict in Git.txt
+error: could not apply 53fc53b... add some html
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 53fc53b... add some html
+
+然后不断地解决冲突，解决完所有conflict后
+[
+不断循环，保存消息
+# git add .
+# git rebase --continue
+]
+
+# git push -f
